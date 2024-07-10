@@ -17,12 +17,12 @@ jobs:
         run: pip install quackosm[cli]
 
       - name: Download Australian OSM data
-        run: wget -qo australia.osm.pbf https://download.geofabrik.de/australia-oceania/australia-latest.osm.pbf
+        run: wget -qo ./australia.osm.pbf https://download.geofabrik.de/australia-oceania/australia-latest.osm.pbf
 
       - name: Convert to geoparquet
-        run: quackosm australia.osm.pbf
+        run: quackosm ./australia.osm.pbf
         
       - name: Commit artifacts
         uses: stefanzweifel/git-auto-commit-action@v5.0.1
         with:
-          file_pattern: '*.geoparquet'
+          file_pattern: './*.geoparquet'
